@@ -23,6 +23,7 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
 		<java.version>11</java.version>
+		<modelmapper.version>2.3.8</modelmapper.version>
 	</properties>
 
 	<dependencies>
@@ -59,6 +60,12 @@
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
+		</dependency>
+
+		<dependency>
+			<groupId>org.modelmapper</groupId>
+			<artifactId>modelmapper</artifactId>
+			<version>${modelmapper.version}</version>
 		</dependency>
 
 		<dependency>

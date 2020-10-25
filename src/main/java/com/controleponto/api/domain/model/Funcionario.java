@@ -30,7 +30,7 @@ public class Funcionario extends EntidadeBase {
                     foreignKey = @ForeignKey(name = "fk_funcionario_projeto_projeto")))
     private List<Projeto> projetos;
 
-    @OneToMany(mappedBy = "funcionario", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "funcionario")
     private List<Lancamento> lancamentos;
 
 }
