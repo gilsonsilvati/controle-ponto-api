@@ -3,34 +3,53 @@ package com.controleponto.api.domain.model;
 import com.controleponto.api.domain.model.base.EntidadeBase;
 import lombok.Getter;
 import lombok.Setter;
+import org.apache.commons.lang3.StringUtils;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "funcionario", uniqueConstraints = { @UniqueConstraint(name = "unq_email", columnNames = "email"), @UniqueConstraint(name = "unq_cpf", columnNames = "cpf") },
-        indexes = { @Index(name = "idx_email", columnList = "email"), @Index(name = "idx_cpf", columnList = "cpf") })
 @Getter @Setter
 public class Funcionario extends EntidadeBase {
 
-    @Column(length = 100, nullable = false)
     private String nome;
-
-    @Column(length = 100, nullable = false)
     private String email;
-
-    @Column(length = 11, nullable = false)
     private String cpf;
 
     @ManyToMany
     @JoinTable(name = "funcionario_projeto",
-            joinColumns = @JoinColumn(name = "funcionario_id", nullable = false,
-                    foreignKey = @ForeignKey(name = "fk_funcionario_projeto_funcionario")),
-            inverseJoinColumns = @JoinColumn(name = "projeto_id", nullable = false,
-                    foreignKey = @ForeignKey(name = "fk_funcionario_projeto_projeto")))
+            joinColumns = @JoinColumn(name = "funcionario_id"),
+            inverseJoinColumns = @JoinColumn(name = "projeto_id")
+    )
     private List<Projeto> projetos;
 
     @OneToMany(mappedBy = "funcionario")
     private List<Lancamento> lancamentos;
+
+    @PrePersist @PreUpdate
+    private void prePersistPreUpdate() {
+        if (StringUtils.isNotBlank(cpf))
+            cpf = removerFormatacao();
+    }
+
+    @PostUpdate
+    private void postPersistPostUpdate() {
+        if (StringUtils.isNotBlank(cpf))
+            cpf = formatar();
+    }
+
+    @PostLoad
+    private void postLoad() {
+        if (StringUtils.isNotBlank(cpf))
+            cpf = formatar();
+    }
+
+    private String removerFormatacao() {
+        return cpf.replaceAll("\\.|-|/", "");
+    }
+
+    private String formatar() {
+        return cpf.replaceAll("(\\d{3})(\\d{3})(\\d{3})", "$1.$2.$3-");
+    }
 
 }

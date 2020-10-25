@@ -6,16 +6,17 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDate;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter @Setter
-@JsonInclude(JsonInclude.Include.NON_NULL)
-public class ProjetoModel {
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
+public class FuncionarioModel {
 
     private String nome;
-    private String descricao;
-    private LocalDate criacao;
+    private String email;
+    private String cpf;
+    private List<ProjetoModel> projetos;
 
 }

@@ -5,19 +5,19 @@ import com.controleponto.api.domain.model.enums.Tipo;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.ManyToOne;
 import java.time.OffsetTime;
 
 @Entity
-@Table(name = "lancamento")
 @Getter @Setter
 public class Lancamento extends EntidadeBase {
 
-    @Column(nullable = false)
     private OffsetTime hora;
     private String descricao;
 
-    @Column(length = 20, nullable = false)
     @Enumerated(EnumType.STRING)
     private Tipo tipo;
 

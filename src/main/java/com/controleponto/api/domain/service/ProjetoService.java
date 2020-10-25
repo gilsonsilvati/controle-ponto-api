@@ -41,7 +41,7 @@ public class ProjetoService {
     }
 
     public Projeto salvar(ProjetoModelInput projetoModelInput) {
-        Optional<Projeto> projetoExistente = projetos.findByNomeIgnoreCaseAndAtivo(projetoModelInput.getNome(), true);
+        Optional<Projeto> projetoExistente = buscarPorNomeAtivo(projetoModelInput.getNome(), true);
 
         if (projetoExistente.isPresent())
             throw new NegocioException("Já existe um projeto cadastrado com este nome.");
@@ -54,7 +54,7 @@ public class ProjetoService {
 
     public ProjetoModel atualizar(Integer id, ProjetoModelInput projetoModelInput) {
         Projeto projeto = buscarPorId(id);
-        Optional<Projeto> projetoExistente = projetos.findByNomeIgnoreCaseAndAtivo(projetoModelInput.getNome(), true);
+        Optional<Projeto> projetoExistente = buscarPorNomeAtivo(projetoModelInput.getNome(), true);
 
         if (projetoExistente.isPresent() && projetoExistente.get().getId() != projeto.getId())
             throw new NegocioException("Já existe um projeto cadastrado com este nome.");
@@ -74,6 +74,10 @@ public class ProjetoService {
     private Projeto buscarPorId(Integer id) {
         return projetos.findById(id)
                 .orElseThrow(() -> new EntidadeNaoEncontradaException("Projeto não localizado."));
+    }
+
+    private Optional<Projeto> buscarPorNomeAtivo(String nome, boolean ativo) {
+        return projetos.findByNomeIgnoreCaseAndAtivo(nome, ativo);
     }
 
     private List<ProjetoModel> toCollectionModel(List<Projeto> projetos) {
