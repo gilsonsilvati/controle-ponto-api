@@ -24,6 +24,9 @@
 
 		<java.version>11</java.version>
 		<modelmapper.version>2.3.8</modelmapper.version>
+		<commons-lang3.version>3.11</commons-lang3.version>
+		<rest-assured.version>4.3.1</rest-assured.version>
+		<mockito-jupiter.version>3.5.15</mockito-jupiter.version>
 	</properties>
 
 	<dependencies>
@@ -76,7 +79,7 @@
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
-			<version>3.11</version>
+			<version>${commons-lang3.version}</version>
 		</dependency>
 
 		<dependency>
@@ -89,6 +92,32 @@
 					<artifactId>junit-vintage-engine</artifactId>
 				</exclusion>
 			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-junit-jupiter</artifactId>
+			<version>${mockito-jupiter.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>io.rest-assured</groupId>
+			<artifactId>rest-assured</artifactId>
+			<version>${rest-assured.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.rest-assured</groupId>
+			<artifactId>json-path</artifactId>
+			<version>${rest-assured.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.rest-assured</groupId>
+			<artifactId>json-schema-validator</artifactId>
+			<version>${rest-assured.version}</version>
+			<scope>test</scope>
 		</dependency>
 	</dependencies>
 
