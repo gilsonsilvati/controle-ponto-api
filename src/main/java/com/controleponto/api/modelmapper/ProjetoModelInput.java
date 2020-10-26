@@ -15,6 +15,5 @@ public class ProjetoModelInput {
     @NotBlank(message = "Nome é obrigatório")
     private String nome;
     private String descricao;
-    private boolean ativo;
 
 }

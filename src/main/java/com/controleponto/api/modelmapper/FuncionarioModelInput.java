@@ -1,6 +1,5 @@
 package com.controleponto.api.modelmapper;
 
-import com.controleponto.api.domain.model.Projeto;
 import com.controleponto.api.domain.model.validation.CPFUnico;
 import com.controleponto.api.domain.model.validation.EmailUnico;
 import lombok.AllArgsConstructor;
@@ -31,6 +30,6 @@ public class FuncionarioModelInput {
     @CPFUnico
     private String cpf;
 
-    private List<Projeto> projetos;
+    private List<ProjetoModelInput> projetos;
 
 }

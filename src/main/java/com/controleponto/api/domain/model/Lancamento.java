@@ -9,13 +9,13 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.ManyToOne;
-import java.time.OffsetTime;
+import java.time.LocalTime;
 
 @Entity
 @Getter @Setter
 public class Lancamento extends EntidadeBase {
 
-    private OffsetTime hora;
+    private LocalTime hora;
     private String descricao;
 
     @Enumerated(EnumType.STRING)
@@ -23,5 +23,8 @@ public class Lancamento extends EntidadeBase {
 
     @ManyToOne
     private Funcionario funcionario;
+
+    // TODO: Setar hora...
+
 
 }

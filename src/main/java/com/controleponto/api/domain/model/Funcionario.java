@@ -44,11 +44,11 @@ public class Funcionario extends EntidadeBase {
             cpf = formatar();
     }
 
-    private String removerFormatacao() {
+    public String removerFormatacao() {
         return cpf.replaceAll("\\.|-|/", "");
     }
 
-    private String formatar() {
+    public String formatar() {
         return cpf.replaceAll("(\\d{3})(\\d{3})(\\d{3})", "$1.$2.$3-");
     }
 
