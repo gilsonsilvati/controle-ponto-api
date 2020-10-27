@@ -6,8 +6,10 @@ import lombok.Setter;
 
 import javax.persistence.Entity;
 import javax.persistence.PrePersist;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "projeto")
 @Getter @Setter
 public class Projeto extends EntidadeBase {
 

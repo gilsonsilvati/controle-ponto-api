@@ -13,4 +13,6 @@ public interface Lancamentos extends JpaRepository<Lancamento, Integer> {
 
     List<Lancamento> findByFuncionarioAndCriacao(Funcionario funcionario, LocalDate criacao);
 
+    List<Lancamento> findByFuncionarioAndCriacaoBetween(Funcionario funcionario, LocalDate inicio, LocalDate fim);
+
 }

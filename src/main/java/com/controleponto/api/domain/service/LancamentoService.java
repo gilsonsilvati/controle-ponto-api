@@ -9,6 +9,8 @@ import com.controleponto.api.domain.repository.Funcionarios;
 import com.controleponto.api.domain.repository.Lancamentos;
 import com.controleponto.api.modelmapper.LancamentoModel;
 import com.controleponto.api.modelmapper.LancamentoModelInput;
+import com.controleponto.api.modelmapper.RelatorioModel;
+import com.controleponto.api.modelmapper.RelatorioModelInput;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,8 +20,8 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Service
 public class LancamentoService {
@@ -32,6 +34,17 @@ public class LancamentoService {
 
     @Autowired
     private Lancamentos lancamentos;
+
+    public RelatorioModel relatorio(Integer id, RelatorioModelInput relatorioModelInput) {
+        Funcionario funcionario = funcionarios.findById(id)
+                .orElseThrow(() -> new EntidadeNaoEncontradaException("Funcionário não localizado."));
+
+        List<Lancamento> list = lancamentos.findByFuncionarioAndCriacaoBetween(funcionario, relatorioModelInput.getInicio(), relatorioModelInput.getFim());
+
+        
+
+        return null;
+    }
 
     public LancamentoModel registrar(LancamentoModelInput lancamentoModelInput) {
         verificarFimDeSemana();
