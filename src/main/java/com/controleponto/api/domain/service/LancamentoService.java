@@ -41,7 +41,7 @@ public class LancamentoService {
 
         List<Lancamento> list = lancamentos.findByFuncionarioAndCriacaoBetween(funcionario, relatorioModelInput.getInicio(), relatorioModelInput.getFim());
 
-        
+        // TODO: Realizar calculos das horas...
 
         return null;
     }
